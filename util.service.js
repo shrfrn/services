@@ -43,3 +43,16 @@ export function debounce(func, delay) {
 		timeoutId = setTimeout(() => func(...args), delay)
 	}
 }
+
+export function throttle(func, delay) {
+	var isSuspended = false
+
+	return (...args) => {
+        if (isSuspended) return
+
+        isSuspended = true
+        setTimeout(() => isSuspended = false, delay)
+
+        func(...args)
+	}
+}
